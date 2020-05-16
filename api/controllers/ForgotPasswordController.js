@@ -35,7 +35,9 @@ exports.forgotPassword = function(req, res) {
 
     /**
      * Tu bude kod, ktory cez webovu sluzbu PIS posle na email heslo
+     * EDIT: kurva zistil som ze ta webova sluzba Email na PIS stranke je nejaka kktina čo posiela email tímu alebo čo
      */
+
 
     return res.status(200).json({ password: heslo }) // Zatial len odosielame heslo ako response, tu bude potom napríklad: { success: true}, to bude znamenat ze email bol uspesne odoslany
 }
