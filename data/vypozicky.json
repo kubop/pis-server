@@ -7,7 +7,9 @@
         "datum_do": "21-01-2020",
         "dovod_citatel": null,
         "dovod_knihovnik": null,
-        "citatel_id": 5
+        "kniha_id": 1,
+        "citatel_id": 5,
+        "knihovnik_id": 1
     },
     { 
         "id": 2,
@@ -17,6 +19,8 @@
         "datum_do": "15-01-2020",
         "dovod_citatel": null,
         "dovod_knihovnik": null,
-        "citatel_id": 5
+        "kniha_id": 1,
+        "citatel_id": 5,
+        "knihovnik_id": 1
     }
 ]
