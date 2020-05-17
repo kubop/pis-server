@@ -1,3 +1,5 @@
+const soap = require('soap')
+
 const citatelia = [
     { 
         id: 1,
@@ -25,6 +27,14 @@ exports.forgotPassword = function(req, res) {
     if (!body || !body.email) {
         return res.status(400).json({ error: 'Bad request' }) 
     } 
+
+    var url = 'http://pis.predmety.fiit.stuba.sk/pis/ws/Validator?WSDL'
+    var args = { email: body.email }
+    soap.createClient(url, function(err, client) {
+        client.validateEmail(args, function(err, result) {
+            console.log(result)
+        })
+    })
 
     const citatel = citatelia.find(c => c.email === body.email)
     if (!citatel) {
