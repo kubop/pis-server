@@ -24,6 +24,7 @@ app.post('/vypozicky', VypozickyController.postRequest)
 app.get('/citatelia', CitateliaController.getAll)
 
 // ForgotPasswordController
+app.post('/verifyEmailAddress', ForgotPasswordController.verifyEmailAddress)
 app.post('/forgotPassword', ForgotPasswordController.forgotPassword)
 
 app.listen(port, () => console.log(`Backend running on localhost:${port}`))
