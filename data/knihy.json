@@ -1,0 +1,26 @@
+[
+    {
+      "id": 1,
+      "nazov": "Harry Peter: Rezeň z Azkabanu",
+      "kategoria": "LGBT BS",
+      "autor": "Peter Varinský",
+      "rok_vydania": 2019,
+      "isbn": "0-2155-9951-9"
+    },
+    {
+      "id": 2,
+      "nazov": "Harry Peter: Ohnivá kaša",
+      "kategoria": "LGBT BS",
+      "autor": "Peter Varinský",
+      "rok_vydania": 2019,
+      "isbn": "0-7075-1054-6"
+    },
+    {
+      "id": 3,
+      "nazov": "Ako som prežil",
+      "kategoria": "Fantasy",
+      "autor": "Milan Pštros",
+      "rok_vydania": 1997,
+      "isbn": "0-1234-2814-8"
+    }
+]
