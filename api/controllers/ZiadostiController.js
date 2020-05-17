@@ -1,7 +1,7 @@
 const fs = require('fs')
 
 exports.getAll = function(req, res) {
-  fs.readFile('./data/vypozicky.json', 'utf8', function (err, data) {
+  fs.readFile('./data/ziadosti.json', 'utf8', function (err, data) {
     if (err) {
         console.log(err)
         return res.status(500).json({ error: 'Internal server error' }) 

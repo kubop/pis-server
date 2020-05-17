@@ -8,8 +8,41 @@ exports.getAll = function(req, res) {
         }
 
         const json_data = JSON.parse(data);
-        res.json(json_data)
-    });
+
+        fs.readFile('./data/knihy.json', 'utf8', function (err, knihy) {
+            if (err) {
+                console.log(err)
+                return res.status(500).json({ error: 'Internal server error' }) 
+            }
+
+            var json_knihy = JSON.parse(knihy)
+
+            var vypozicky_s_knihami = json_data.map(vypozicka => {
+                return {
+                    ...vypozicka,
+                    kniha: json_knihy.find(k => k.id === vypozicka.kniha_id)
+                }
+            })
+
+            fs.readFile('./data/citatelia.json', 'utf8', function (err, citatelia) {
+                if (err) {
+                    console.log(err)
+                    return res.status(500).json({ error: 'Internal server error' }) 
+                }
+
+                var json_citatelia = JSON.parse(citatelia)
+
+                var vypozicky_s_citatelmi = vypozicky_s_knihami.map(vypozicka => {
+                    return {
+                        ...vypozicka,
+                        citatel: json_citatelia.find(c => c.id === vypozicka.citatel_id)
+                    }
+                })
+
+                res.json(vypozicky_s_citatelmi)
+            })
+        })
+    })
 }
 
 exports.vypozickyCitatela = function(req, res) {
@@ -55,6 +88,8 @@ exports.predlzenieVypozicky = function(req, res) {
     if (!body || !body.vypozicka || !body.predlzenie_do || !body.dovod_predlzenia) {
         return res.status(400).json({ error: 'Bad request' }) 
     }
+
+    testFunction()
 
     // Overenie ci je možné predĺžiť
     res.status(200).json({ success: true })
