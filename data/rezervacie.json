@@ -1,9 +1,25 @@
 [
     {
       "id": 1,
-      "stav": "schválená",
+      "stav": 1,
       "datum_od": "01-06-2020",
       "datum_do": "15-06-2020",
+      "kniha_id": 1,
+      "citatel_id": 2
+    },
+    {
+      "id": 2,
+      "stav": 2,
+      "datum_od": "01-06-2020",
+      "datum_do": "15-06-2020",
+      "kniha_id": 1,
+      "citatel_id": 2
+    },
+    {
+      "id": 3,
+      "stav": 1,
+      "datum_od": "27-05-2020",
+      "datum_do": "28-05-2020",
       "kniha_id": 1,
       "citatel_id": 2
     }

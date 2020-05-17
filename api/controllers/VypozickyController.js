@@ -1,4 +1,5 @@
 const fs = require('fs')
+const { compareDates } = require('../../helpers/Date.js')
 
 exports.getAll = function(req, res) {
     fs.readFile('./data/vypozicky.json', 'utf8', function (err, data) {
@@ -89,8 +90,27 @@ exports.predlzenieVypozicky = function(req, res) {
         return res.status(400).json({ error: 'Bad request' }) 
     }
 
-    testFunction()
+    // Overenie či kniha nie je rezervovaná
+    const kniha = body.vypozicka.kniha
 
-    // Overenie ci je možné predĺžiť
-    res.status(200).json({ success: true })
+    fs.readFile('./data/rezervacie.json', 'utf8', function (err, rezervacie) {
+        if (err) {
+            console.log(err)
+            return res.status(500).json({ error: 'Internal server error' }) 
+        }
+
+        var json_rezervacie = JSON.parse(rezervacie).filter(r => r.kniha_id === kniha.id && r.stav === 1)
+
+        for(let i = 0; i < json_rezervacie.length; i++) {
+            const datum_do = body.vypozicka.datum_do
+            const datum_od_r = json_rezervacie[i].datum_od
+            const predlzenie_do = body.predlzenie_do
+    
+            if (compareDates(datum_od_r, datum_do) >= 0 && compareDates(predlzenie_do, datum_od_r) >= 0) {
+                return res.status(200).json({ error: 'Daná kniha je rezervovaná už iným čitateľom' })
+            }
+        }
+
+        res.status(200).json({ success: true })
+    })
 }
