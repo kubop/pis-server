@@ -8,8 +8,9 @@
         "dovod_citatel": null,
         "dovod_knihovnik": null,
         "kniha_id": 1,
-        "citatel_id": 5,
-        "knihovnik_id": 1
+        "citatel_id": 1,
+        "knihovnik_id": 1,
+        "nazov": "Harry Peter: Rezeň z Azkabanu"
     },
     { 
         "id": 2,
@@ -20,7 +21,8 @@
         "dovod_citatel": null,
         "dovod_knihovnik": null,
         "kniha_id": 1,
-        "citatel_id": 5,
-        "knihovnik_id": 1
+        "citatel_id": 2,
+        "knihovnik_id": 1,
+        "nazov": "Ako som prežil"
     }
 ]

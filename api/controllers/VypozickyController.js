@@ -1,8 +1,6 @@
 const fs = require('fs')
 
 exports.getAll = function(req, res) {
-    console.log('GET request /vypozicky')
-
     fs.readFile('./data/vypozicky.json', 'utf8', function (err, data) {
         if (err) {
             console.log(err)
@@ -14,8 +12,22 @@ exports.getAll = function(req, res) {
     });
 }
 
-exports.postRequest = function(req, res) {
-    console.log('POST request, prisli nam tieto data')
+exports.vypozickyCitatela = function(req, res) {
     const body = req.body
-    console.log(body)
+
+    if (!body || !body.citatel) {
+        return res.status(400).json({ error: 'Bad request' }) 
+    }
+
+    fs.readFile('./data/vypozicky.json', 'utf8', function (err, data) {
+        if (err) {
+            console.log(err)
+            return res.status(500).json({ error: 'Internal server error' }) 
+        }
+
+        const json_data = JSON.parse(data);
+        const filtered_data = json_data.filter(vypozicka => vypozicka.citatel_id === body.citatel)
+
+        res.json(filtered_data)
+    });
 }
