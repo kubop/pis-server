@@ -1,29 +1,17 @@
-const nejakeVypozicky = [
-    { 
-        id: 1,
-        stav: '',
-        cas_vytvorenia: '123345678',
-        datum_od: '15-01-2020',
-        datum_do: '21-01-2020',
-        dovod_citatel: null,
-        dovod_knihovnik: null,
-        citatel_id: 5
-    },
-    { 
-        id: 2,
-        stav: '',
-        cas_vytvorenia: '123345678',
-        datum_od: '12-01-2020',
-        datum_do: '15-01-2020',
-        dovod_citatel: null,
-        dovod_knihovnik: null,
-        citatel_id: 5
-    }
-]
+const fs = require('fs')
 
 exports.getAll = function(req, res) {
-    console.log('GET request')
-    res.json(nejakeVypozicky)
+    console.log('GET request /vypozicky')
+
+    fs.readFile('./data/vypozicky.json', 'utf8', function (err, data) {
+        if (err) {
+            console.log(err)
+            return res.status(500).json({ error: 'Internal server error' }) 
+        }
+
+        const json_data = JSON.parse(data);
+        res.json(json_data)
+    });
 }
 
 exports.postRequest = function(req, res) {
