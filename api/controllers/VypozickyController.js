@@ -25,9 +25,26 @@ exports.vypozickyCitatela = function(req, res) {
             return res.status(500).json({ error: 'Internal server error' }) 
         }
 
-        const json_data = JSON.parse(data);
-        const filtered_data = json_data.filter(vypozicka => vypozicka.citatel_id === body.citatel)
+        var json_data = JSON.parse(data);
+        var filtered_data = json_data.filter(vypozicka => vypozicka.citatel_id === body.citatel)
 
-        res.json(filtered_data)
+        // Ku kazdej vypozicke pripojime knihu
+        fs.readFile('./data/knihy.json', 'utf8', function (err, knihy) {
+            if (err) {
+                console.log(err)
+                return res.status(500).json({ error: 'Internal server error' }) 
+            }
+
+            var json_knihy = JSON.parse(knihy)
+
+            var vypozicky_s_knihami = filtered_data.map(vypozicka => {
+                return test = {
+                    ...vypozicka,
+                    kniha: json_knihy.find(k => k.id === vypozicka.kniha_id)
+                }
+            })
+
+            res.json(vypozicky_s_knihami)
+        })
     });
 }

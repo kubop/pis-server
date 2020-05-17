@@ -9,8 +9,7 @@
         "dovod_knihovnik": null,
         "kniha_id": 1,
         "citatel_id": 1,
-        "knihovnik_id": 1,
-        "nazov": "Harry Peter: Rezeň z Azkabanu"
+        "knihovnik_id": 1
     },
     { 
         "id": 2,
@@ -22,7 +21,18 @@
         "dovod_knihovnik": null,
         "kniha_id": 1,
         "citatel_id": 2,
-        "knihovnik_id": 1,
-        "nazov": "Ako som prežil"
+        "knihovnik_id": 1
+    },
+    { 
+        "id": 3,
+        "stav": "",
+        "cas_vytvorenia": 123345678,
+        "datum_od": "20-01-2020",
+        "datum_do": "30-01-2020",
+        "dovod_citatel": null,
+        "dovod_knihovnik": null,
+        "kniha_id": 3,
+        "citatel_id": 1,
+        "knihovnik_id": 1
     }
 ]
