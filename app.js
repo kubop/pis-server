@@ -20,6 +20,7 @@ app.use(bodyParser.json())
 // VypozickyController
 app.get('/vypozicky', VypozickyController.getAll)
 app.post('/vypozicky', VypozickyController.vypozickyCitatela)
+app.post('/predlzenieVypozicky', VypozickyController.predlzenieVypozicky)
 
 // CitateliaController
 app.get('/citatelia', CitateliaController.getAll)

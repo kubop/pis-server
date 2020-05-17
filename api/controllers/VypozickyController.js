@@ -48,3 +48,14 @@ exports.vypozickyCitatela = function(req, res) {
         })
     });
 }
+
+exports.predlzenieVypozicky = function(req, res) {
+    const body = req.body
+    
+    if (!body || !body.vypozicka || !body.predlzenie_do || !body.dovod_predlzenia) {
+        return res.status(400).json({ error: 'Bad request' }) 
+    }
+
+    // Overenie ci je možné predĺžiť
+    res.status(200).json({ success: true })
+}
