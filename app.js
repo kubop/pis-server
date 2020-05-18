@@ -17,9 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 // Vypozicky
-app.get('/vypozicky', VypozickyController.getAll)
 app.post('/api/vypozicky/getByCitatelID', VypozickyController.getByCitatelID)
-app.post('/predlzenieVypozicky', VypozickyController.predlzenieVypozicky)
+app.post('/api/vypozicky/predlzenieVypozicky', VypozickyController.predlzenieVypozicky)
 
 // Knihy
 app.post('/api/knihy/getByIDs', KnihyController.getByIDs)
