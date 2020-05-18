@@ -1,8 +1,6 @@
 [
     { 
         "id": 1,
-        "stav": 1,
-        "cas_vytvorenia": 123345678,
         "datum_od": "15-05-2020",
         "datum_do": "25-05-2020",
         "kniha_id": 1,
@@ -11,8 +9,6 @@
     },
     { 
         "id": 2,
-        "stav": 1,
-        "cas_vytvorenia": 123345678,
         "datum_od": "12-01-2020",
         "datum_do": "15-01-2020",
         "kniha_id": 1,
@@ -21,8 +17,6 @@
     },
     { 
         "id": 3,
-        "stav": 1,
-        "cas_vytvorenia": 123345678,
         "datum_od": "20-01-2020",
         "datum_do": "30-01-2020",
         "kniha_id": 3,
@@ -31,8 +25,6 @@
     },
     { 
         "id": 4,
-        "stav": 1,
-        "cas_vytvorenia": 123345678,
         "datum_od": "01-05-2020",
         "datum_do": "30-05-2020",
         "kniha_id": 2,
