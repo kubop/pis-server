@@ -27,7 +27,8 @@ app.post('/api/knihy/getByIDs', KnihyController.getByIDs)
 app.get('/citatelia', CitateliaController.getAll)
 
 // Ziadosti
-app.get('/ziadosti', ZiadostiController.getAll)
+app.get('/api/ziadosti/getAll', ZiadostiController.getAllRequest)
+app.post('/api/ziadosti/vytvoritNovu', ZiadostiController.vytvoritNovu)
 
 // ForgotPassword
 app.post('/api/obnovenie-hesla/validaciaEmailu', ObnovenieHeslaController.validaciaEmailu)
