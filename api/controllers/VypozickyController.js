@@ -26,10 +26,17 @@ exports.getByCitatelID = function(req, res) {
 exports.predlzenieVypozicky = function(req, res) {
     const body = req.body
     
+    // Kontrola všetkých potrebných údajov
     if (!body || !body.vypozicka || !body.predlzenie_do || !body.dovod_predlzenia) {
         return res.status(400).json({ error: 'Bad request' }) 
     }
 
+    // Kontrola dátumov
+    if (compareDates(body.vypozicka.datum_do, body.predlzenie_do) >= 0) {
+        return res.status(200).json({ error: 'Dátum predĺženia výpožičky musí byť väčší ako dátum konca výpožičky' }) 
+    }
+
+    // Kontrola kolízie s rezerváciami
     RezervacieController.getByKnihaID(body.vypozicka.kniha.id)
     .then((rezervacie) => {
         for(let i = 0; i < rezervacie.length; i++) {
