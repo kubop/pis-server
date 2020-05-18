@@ -32,4 +32,7 @@ app.get('/ziadosti', ZiadostiController.getAll)
 app.post('/verifyEmailAddress', ForgotPasswordController.verifyEmailAddress)
 app.post('/forgotPassword', ForgotPasswordController.forgotPassword)
 
+// Login
+app.post('/login', LoginController.userLogin)
+
 app.listen(port, () => console.log(`Backend running on localhost:${port}`))
