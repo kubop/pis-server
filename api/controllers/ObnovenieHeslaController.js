@@ -1,7 +1,7 @@
-const fs = require('fs')
 const { soapRequest } = require('../../helpers/SoapWS.js')
+const CitateliaController = require('./CitateliaController.js')
 
-exports.verifyEmailAddress = function(req, res) {
+exports.validaciaEmailu = function(req, res) {
     const body = req.body
 
     if (!body || !body.email) {
@@ -13,34 +13,26 @@ exports.verifyEmailAddress = function(req, res) {
     }).then((result) => {
         return res.status(200).json({ valid: result.success })
     }).catch((error) => {
-        return res.status(500).json({ error: err.message }) 
+        return res.status(500).json({ error: error.message }) 
     })
 }
 
-exports.forgotPassword = function(req, res) {
+exports.odoslanieEmailu = function(req, res) {
     const body = req.body
 
     // Ak v parametroch neprisiel email => zly request
     if (!body || !body.email) {
         return res.status(400).json({ error: 'Bad request' }) 
-    } 
+    }
 
-    // Nacitame si všetkých čitateľov
-    fs.readFile('./data/citatelia.json', 'utf8', function (err, data) {
-        if (err) { // Len nejaky error handling
-            console.log(err)
-            return res.status(500).json({ error: 'Internal server error' }) 
-        }
-
-        // načítame si čitateľov vo formáte JSON
-        const citatelia = JSON.parse(data)
-        
+    CitateliaController.getAll()
+    .then((citatelia) => {
         // Nájdeme čitateľa, ktorého email sa zhodnuje s emailom ktorý je v requeste
         const citatel = citatelia.find(c => c.email === body.email)
-        if (!citatel) { // Ak sme takéto nenašli => erreor
+        if (!citatel) { // Ak sme takéto nenašli => error
             return res.status(200).json({ error: 'Vami zadaná emailová adresa nie je registrovaná v našom systéme' })
         }
-    
+
         const heslo = citatel.heslo // toto heslo mu chceme poslat na email, asi cez webovu sluzbu stranky
     
         // Odoslanie emailu pomocou webovej sluzby PIS
@@ -55,6 +47,9 @@ exports.forgotPassword = function(req, res) {
         }).catch((error) => {
             return res.status(500).json({ error: error.message }) 
         })
+    })
+    .catch((error) => {
+        console.log(error)
     })
 }
 
