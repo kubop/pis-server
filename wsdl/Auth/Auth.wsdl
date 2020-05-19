@@ -14,7 +14,7 @@
       <xsd:complexType name="login">
         <xsd:sequence>
           <xsd:element name="email" type="xsd:string"/>
-          <xsd:element name="password" type="xsd:string"/>
+          <xsd:element name="heslo" type="xsd:string"/>
         </xsd:sequence>
       </xsd:complexType>
       <xsd:element name="login" type="ns:login"/>

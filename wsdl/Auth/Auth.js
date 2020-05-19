@@ -5,7 +5,7 @@ exports.Auth = {
     AuthPort: {
       login: function(args, callback) {
         // Kontrola argumentov
-        if (!args.email || !args.password) {
+        if (!args.email || !args.heslo) {
           throw {
             Fault: {
               Code: {
@@ -21,7 +21,7 @@ exports.Auth = {
         CitateliaController.getByCitatelEmail(args.email)
         .then((result) => {
           if (result.length === 1) {
-            if (result[0].heslo === args.password) {
+            if (result[0].heslo === args.heslo) {
               return callback({ success: true })
             }
           }
