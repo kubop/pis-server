@@ -35,3 +35,25 @@ exports.getByCitatelEmail = function(email) {
         })
     })
 }
+
+exports.getByCitatelID = function(id) {
+    return new Promise((resolve, reject) => {
+        soapRequest('http://pis.predmety.fiit.stuba.sk/pis/ws/Students/Team101citatelia?WSDL', 'getByAttributeValue', {
+            attribute_name: 'id',
+            attribute_value: id,
+            ids: [
+                { id: null }
+            ]
+        })
+        .then((result) => {
+            if (result.citatelias !== null) {
+                resolve(result.citatelias.citatelia[0])
+            } else {
+                resolve([])
+            }
+        })
+        .catch((error) => {
+            reject(error)
+        })
+    })
+}
