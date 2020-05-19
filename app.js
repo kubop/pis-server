@@ -3,6 +3,11 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const soap = require('soap')
 
+// Our WSDL 
+const AuthWSDL = require('fs').readFileSync('./wsdl/Auth/Auth.wsdl', 'utf8');
+const { Auth } = require('./wsdl/Auth/Auth.js')
+
+// Controllers
 const VypozickyController = require('./api/controllers/VypozickyController.js')
 const CitateliaController = require('./api/controllers/CitateliaController.js')
 const ObnovenieHeslaController = require('./api/controllers/ObnovenieHeslaController.js')
@@ -24,7 +29,7 @@ app.post('/api/vypozicky/predlzenieVypozicky', VypozickyController.predlzenieVyp
 app.post('/api/knihy/getByIDs', KnihyController.getByIDs)
 
 // Citatelia
-app.get('/citatelia', CitateliaController.getAll)
+// app.get('/citatelia', CitateliaController.getAll)
 
 // Ziadosti
 app.get('/api/ziadosti/getAll', ZiadostiController.getAllRequest)
@@ -37,28 +42,6 @@ app.post('/api/obnovenie-hesla/odoslanieEmailu', ObnovenieHeslaController.odosla
 app.listen(port, () => {
     console.log(`Backend running on localhost:${port}`)
 
-    /**
-     * Príprava na vlastne WS
-    soap.listen(app, '/wsdl', myService, xml, () => {
-        console.log('Soap server started')
-    })
-    */
+    // WebService Auth
+    soap.listen(app, '/wsdl/Auth', Auth, AuthWSDL, () => console.log('WSDL Service Auth started'))
 })
-
-/**
- * Priprava na vlastne WS
-const xml = require('fs').readFileSync('myservice.wsdl', 'utf8');
-
-const myService = {
-    ValidatorService: {
-        ValidatorPort: {
-            validateEmail: function(args) {
-                console.log('here')
-                return {
-                    success: true
-                }
-            }
-        }
-    }
-}
-*/
